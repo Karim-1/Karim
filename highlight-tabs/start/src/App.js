@@ -1,25 +1,43 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import "./App.css";
+import Tab from "./components/Tab";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Features from "./pages/Features";
 
 function App() {
   return (
-    <div className="app">
-      <div className="browser">
-        <div className="tabs">
-          <div className="tab">
-            <a>Home</a>
+    <Router>
+      <div className="app">
+        <div className="browser">
+          <div className="tabs">
+            <Tab>
+              <link to="/">Home</link>
+            </Tab>
+            <Tab>
+              <link to="/About">About</link>
+            </Tab>
+            <Tab>
+              <link to="/Features">Features</link>
+            </Tab>
           </div>
-          <div className="tab">
-            <a>About</a>
-          </div>
-          <div className="tab">
-            <a>Features</a>
+
+          <div className="viewport">
+            <Route path="/About">
+              <About />
+            </Route>
+            <Route path="/Features">
+              <Features />
+            </Route>
+            <Route path="" exact={true}>
+              <Home />
+            </Route>
           </div>
         </div>
-
-        <div className="viewport">Pages Go Here</div>
       </div>
-    </div>
+    </Router>
   );
 }
 
