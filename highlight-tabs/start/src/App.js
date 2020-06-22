@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  NavLink,
+  Switch,
+} from "react-router-dom";
 
 import "./App.css";
 import Tab from "./components/Tab";
@@ -14,26 +19,34 @@ function App() {
         <div className="browser">
           <div className="tabs">
             <Tab>
-              <link to="/">Home</link>
+              <NavLink activeClassName="is-active" to="/" exact="true">
+                Home
+              </NavLink>
             </Tab>
             <Tab>
-              <link to="/About">About</link>
+              <NavLink activeClassName="is-active" to="/About">
+                About
+              </NavLink>
             </Tab>
             <Tab>
-              <link to="/Features">Features</link>
+              <NavLink activeClassName="is-active" to="/Features">
+                Features
+              </NavLink>
             </Tab>
           </div>
 
           <div className="viewport">
-            <Route path="/About">
-              <About />
-            </Route>
-            <Route path="/Features">
-              <Features />
-            </Route>
-            <Route path="" exact={true}>
-              <Home />
-            </Route>
+            <Switch>
+              <Route path="/About">
+                <About />
+              </Route>
+              <Route path="/Features">
+                <Features />
+              </Route>
+              <Route path="/" exact={true}>
+                <Home />
+              </Route>
+            </Switch>
           </div>
         </div>
       </div>
